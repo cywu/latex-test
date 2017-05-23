@@ -1,0 +1,54 @@
+% XeTeX is required to compile the file. LaTeX's reader syntax just cannot deal with unicode.
+\documentclass{article}
+
+% Use fontspec to define some font families. See below. CJK is treated very well by the xeCJK
+% package. The example below (the mouth part) contains a symbol from the CJK set.  We tried out the
+% ucharclasses package. It does not seem to consider the mouth part to be part of the CJK set. It is
+% nice to be able to pick the font according to the unicode. However it does not seem to always work
+% as desired, especially in our case which is a boundary use case.
+\usepackage{fontspec}
+
+\usepackage[slantfont,boldfont]{xeCJK}
+
+% The fonts we use. Tahoma is chosen because it contains both Thai and Arabic and Latin glyphs. In
+% fact, FreeSerif even covers the star symbol (WHITE FOUR POINTED STAR). For demonstration purposes,
+% we still use Tahoma. Besides we think sans serif fonts are more approppriate.
+\setmainfont {Tahoma}
+
+% The humongous CJK font from Google
+\setCJKmainfont{Noto Sans CJK SC}
+
+% The cute symbols font from Google. Once you define a new font family like this, you can refer to
+% it later. The usage is like \it \bf etc. in the Knuth's original way. See example below.
+\newfontfamily\symbols {Noto Sans Symbols}
+
+% After seeing that we just need to use the correct font in order to display the characters, we
+% boldly attempted the emojis.
+\newfontfamily\emoji {Segoe UI Emoji}
+
+% If your emoticon contains characters from a right-to-left script, you must specify the direction
+% manually. The bidi package is used for typesetting bidirectional texts. Obviously \RL is for
+% right-to-left and \LR is for left-to-right.
+\usepackage {bidi}
+
+
+\begin{document}
+
+{\Large \XeTeX\ Challenge!}
+\vskip 1em
+
+(à¹‘ â€¢Ì€ã…‚â€¢Ì)\RL{Ùˆ} {\symbols âœ§}
+\vskip 1em
+
+The following does not even display in my text editor. lol. æˆ‘çš„ç¼–è¾‘å™¨æ ¹æœ¬ä¸æ˜¾ç¤ºä¸‹é¢è¿™äº›ä¸æ˜ç‰©è´¨ï¼Œçº¯ç²¹å‡­æ„Ÿè§‰æ‰“äº†ä¸€äº›ã€‚
+\vskip 1em
+
+{\emoji í ½í¸±í ¾í´£í ½í¸³í ½í¸í ½íºí ¼í½œí ¼í¾ƒâš¾í ½í»€}
+
+
+\end{document}
+%%% Local Variables: 
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% End: 
